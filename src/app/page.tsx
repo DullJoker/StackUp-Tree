@@ -1,5 +1,5 @@
-import { Metadata, type NextPage } from "next";
-import Image, { StaticImageData } from "next/image";
+import { type Metadata, type NextPage } from "next";
+import Image, { type StaticImageData } from "next/image";
 import { appConfig } from "~/config/app";
 import { LinkLister } from "~/contents/linksLister";
 import ProfilePicFallback from "~/images/StackUpLogo.webp";

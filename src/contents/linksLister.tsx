@@ -5,8 +5,6 @@ import LinksItem from "~/components/items/linksItem";
 import Links from "~/config/links";
 
 export const LinkLister = () => {
-  const listerItemClassName =
-    "flex w-full rounded-2xl bg-MainDarkGray px-2 py-4 shadow-md hover:shadow-xl";
   return (
     <div className="flex flex-col w-full gap-6 max-w-4xl mx-auto">
       {Links.map((current, idx) => {
