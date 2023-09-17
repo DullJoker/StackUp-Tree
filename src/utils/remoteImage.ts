@@ -1,8 +1,8 @@
 export const remoteImage = async (url: string) => {
-  let response = await fetch(url);
-  let blob = await response.blob();
-  let arrayBuffer = await blob.arrayBuffer();
-  let base64String = bufferToBase64(arrayBuffer);
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const arrayBuffer = await blob.arrayBuffer();
+  const base64String = bufferToBase64(arrayBuffer);
   return "data:" + blob.type + ";base64," + base64String;
 };
 
