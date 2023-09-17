@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     default: `${appConfig.member.name} @ StackUp Socials`,
     template: `%s | ${appConfig.member.name} @ StackUp Socials`,
   },
+  description: `${appConfig.member.name}'s socials in a neat list!`,
   icons: ["/favicon.ico"],
 };
 
