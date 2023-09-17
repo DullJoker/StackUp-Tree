@@ -1,21 +1,21 @@
-import { type Metadata } from "next";
-import React from "react";
-import Header from "~/components/header";
-import { appConfig } from "~/config/app";
-import "~/styles/tailwind.css";
+import { type Metadata } from 'next'
+import React from 'react'
+import Header from '~/components/header'
+import { appConfig } from '~/config/app'
+import '~/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
     default: `${appConfig.member.name} @ StackUp Socials`,
-    template: `%s | ${appConfig.member.name} @ StackUp Socials`,
+    template: `%s | ${appConfig.member.name} @ StackUp Socials`
   },
   description: `${appConfig.member.name}'s socials in a neat list!`,
-  icons: ["/favicon.ico"],
-};
+  icons: ['/favicon.ico']
+}
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html>
+    <html lang="en-US">
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
@@ -26,7 +26,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         </main>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

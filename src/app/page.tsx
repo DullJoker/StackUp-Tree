@@ -1,5 +1,5 @@
 import { type Metadata, type NextPage } from "next";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { appConfig } from "~/config/app";
 import { LinkLister } from "~/contents/linksLister";
 import ProfilePicFallback from "~/images/StackUpLogo.webp";
@@ -11,22 +11,15 @@ export const metadata: Metadata = {
 
 const getProfilePic = async () => {
   try {
-    if (appConfig.member.profilePicture.srcType == "remote") {
-      const remotePicture = await remoteImage(
-        appConfig.member.profilePicture.src,
-      );
+    const remotePicture = await remoteImage(
+      appConfig.member.profilePicture.src.toString(),
+    );
 
-      return {
-        src: remotePicture,
-        width: 100,
-        height: 100,
-      };
-    } else if (appConfig.member.profilePicture.srcType == "local") {
-      return (await import(
-        appConfig.member.profilePicture.src
-      )) as StaticImageData;
-    }
-    return ProfilePicFallback;
+    return {
+      src: remotePicture,
+      width: 100,
+      height: 100,
+    };
   } catch (error) {
     console.error(error);
     return ProfilePicFallback;

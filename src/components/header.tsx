@@ -1,7 +1,7 @@
-import Image from "next/image";
-import React from "react";
-import { appConfig } from "~/config/app";
-import LogoStackUp from "~/images/StackUpLogo.webp";
+import Image from 'next/image'
+import React from 'react'
+import { appConfig } from '~/config/app'
+import LogoStackUp from '~/images/StackUpLogo.webp'
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
         </span>
       </h1>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

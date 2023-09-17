@@ -1,15 +1,15 @@
-import Link from "next/link";
-import React from "react";
-import { type IconType } from "react-icons";
+import Link from 'next/link'
+import React from 'react'
+import { type IconType } from 'react-icons'
 
 const LinksItem = ({
   Icon,
   title,
-  href,
+  href
 }: {
-  Icon: IconType;
-  title: string;
-  href: string;
+  Icon: IconType
+  title: string
+  href: string
 }) => {
   return (
     <Link
@@ -23,7 +23,7 @@ const LinksItem = ({
       </span>
       <span className="mx-auto my-auto line-clamp-1 max-w-md">{title}</span>
     </Link>
-  );
-};
+  )
+}
 
-export default LinksItem;
+export default LinksItem
