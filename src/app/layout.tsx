@@ -17,7 +17,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html>
       <head>
-        <meta name="description" content="Kiarmin linktree" />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
