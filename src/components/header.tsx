@@ -1,7 +1,8 @@
-import Image from 'next/image'
-import React from 'react'
-import { appConfig } from '~/config/app'
-import LogoStackUp from '~/images/StackUpLogo.webp'
+import React from "react"
+import { appConfig } from "~/config/app"
+import LogoStackUp from "~/images/StackUpLogo.webp"
+
+import Image from "next/image"
 
 const Header = () => {
   return (

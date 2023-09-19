@@ -2,28 +2,10 @@ import { type Metadata, type NextPage } from "next";
 import Image from "next/image";
 import { appConfig } from "~/config/app";
 import { LinkLister } from "~/contents/linksLister";
-import ProfilePicFallback from "~/images/StackUpLogo.webp";
-import { remoteImage } from "~/utils/remoteImage";
+import { getProfilePic } from "~/utils/remoteImage";
 
 export const metadata: Metadata = {
   title: `${appConfig.member.name} @ StackUp Socials`,
-};
-
-const getProfilePic = async () => {
-  try {
-    const remotePicture = await remoteImage(
-      appConfig.member.profilePicture.src.toString(),
-    );
-
-    return {
-      src: remotePicture,
-      width: 100,
-      height: 100,
-    };
-  } catch (error) {
-    console.error(error);
-    return ProfilePicFallback;
-  }
 };
 
 const Home: NextPage = async () => {
@@ -41,10 +23,15 @@ const Home: NextPage = async () => {
           priority
         />
         <h2 className="mx-auto mt-6 text-2xl font-extrabold text-white">
-          {appConfig.member.name}
+          {appConfig.member.handle}
         </h2>
       </section>
-      <section id="Links" className="mx-2 mt-14 flex px-4">
+      <section id="Bio" className="flex w-full flex-col bg-MainDarkGray">
+        <p className="mx-auto py-4 text-md font-extrabold text-white">
+          {appConfig.member.bio}
+        </p>
+      </section>
+      <section id="Links" className="mx-2 mt-6 flex px-4">
         <LinkLister />
       </section>
     </>

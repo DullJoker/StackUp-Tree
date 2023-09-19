@@ -1,20 +1,36 @@
-import { FaInstagram, FaTwitch, FaTwitterSquare } from 'react-icons/fa'
+import {
+  FaDiscord,
+  FaHome,
+  FaInstagram,
+  FaTwitch,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Links = [
   {
-    icon: FaTwitterSquare,
-    title: 'Check out my Twitter!',
-    href: 'https://twitter.com/StackUpDotOrg'
+    icon: FaHome,
+    title: "Stack Up Home Page!",
+    href: "https://www.stackup.org",
   },
   {
     icon: FaInstagram,
-    title: 'Check out my Instagram!',
-    href: 'https://instagram.com/StackUpDotOrg'
+    title: "Instagram",
+    href: "https://instagram.com/StackUpDotOrg",
+  },
+  {
+    icon: FaTwitter,
+    title: "Twitter",
+    href: "https://twitter.com/StackUpDotOrg",
+  },
+  {
+    icon: FaDiscord,
+    title: "Join the Stack Up Discord Server!",
+    href: "http://discord.gg/StackUpDotOrg",
   },
   {
     icon: FaTwitch,
-    title: 'Check out my Twitch!',
-    href: 'https://twitch.tv/StackUpDotOrg'
-  }
-]
-export default Links
+    title: "StackUp_ShanghaiSix - Twitch",
+    href: "https://www.twitch.tv/stackup_shanghaisix",
+  },
+];
+export default Links;
