@@ -36,7 +36,7 @@ const Home: NextPage = async () => {
           {appConfig.member.bio}
         </p>
       </section>
-      <section id="Links" className="mx-2 mt-6 flex px-4">
+      <section id="Links" className="mx-2 mt-6 mb-4 flex px-4">
         <LinkLister />
       </section>
     </>
