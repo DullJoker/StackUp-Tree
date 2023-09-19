@@ -25,7 +25,7 @@ export const generateMetadata = async () => {
       locale: "en_US",
       images: [
         {
-          url: new URL(`/api/og`, metadataBase.host),
+          url: "/api/og",
           width: 1200,
           height: 630,
           alt: `${appConfig.member.name} @ StackUp Socials`,
