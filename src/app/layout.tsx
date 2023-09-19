@@ -1,16 +1,15 @@
-import { type Metadata } from "next"
-import React from "react"
-import Footer from "~/components/footer"
-import Header from "~/components/header"
-import { appConfig } from "~/config/app"
-import "~/styles/tailwind.css"
-
-import { headers } from "next/headers"
+import { type Metadata } from "next";
+import { headers } from "next/headers";
+import React from "react";
+import Footer from "~/components/footer";
+import Header from "~/components/header";
+import { appConfig } from "~/config/app";
+import "~/styles/tailwind.css";
 
 export const generateMetadata = async () => {
-  const headersList = headers()
-  const domain = headersList.get("x-forwarded-host") || headersList.get("host")
-  const metadataBase = new URL(domain || "https://acme.com")
+  const headersList = headers();
+  const domain = headersList.get("x-forwarded-host") || headersList.get("host");
+  const metadataBase = new URL(domain || "https://acme.com");
 
   return {
     title: {
@@ -21,6 +20,8 @@ export const generateMetadata = async () => {
     icons: ["/favicon.ico"],
     metadataBase,
     openGraph: {
+      title: `${appConfig.member.name} @ StackUp Socials`,
+      description: `${appConfig.member.name}'s socials in a neat list!`,
       type: "website",
       locale: "en_US",
       images: [
@@ -32,8 +33,8 @@ export const generateMetadata = async () => {
         },
       ],
     },
-  } as Metadata
-}
+  } as Metadata;
+};
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -49,7 +50,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         </main>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;
