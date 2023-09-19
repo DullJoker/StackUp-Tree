@@ -6,6 +6,8 @@ import Header from "~/components/header";
 import { appConfig } from "~/config/app";
 import "~/styles/tailwind.css";
 
+export const revalidate = 86400;
+
 export const generateMetadata = async () => {
   const headersList = headers();
   const requestedURL =
@@ -27,7 +29,7 @@ export const generateMetadata = async () => {
       locale: "en_US",
       images: [
         {
-          url: `/api/og`,
+          url: new URL(`/api/og`, metadataBase.host),
           width: 1200,
           height: 630,
           alt: `${appConfig.member.name} @ StackUp Socials`,

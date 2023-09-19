@@ -1,11 +1,38 @@
 import { type Metadata, type NextPage } from "next";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { appConfig } from "~/config/app";
 import { LinkLister } from "~/contents/linksLister";
 import { getProfilePic } from "~/utils/remoteImage";
 
-export const metadata: Metadata = {
-  title: `${appConfig.member.name} @ StackUp Socials`,
+export const revalidate = 86400;
+
+export const generateMetadata = async () => {
+  const headersList = headers();
+  const requestedURL =
+    headersList.get("x-requested-url") || "https://stackup.socials.vercel.app";
+  const metadataBase = new URL(requestedURL);
+
+  return {
+    title: `${appConfig.member.name} @ StackUp Socials`,
+    description: `${appConfig.member.name}'s socials in a neat list!`,
+    icons: ["/favicon.ico"],
+    metadataBase,
+    openGraph: {
+      title: `${appConfig.member.name} @ StackUp Socials`,
+      description: `${appConfig.member.name}'s socials in a neat list!`,
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: new URL(`/api/og`, metadataBase.host),
+          width: 1200,
+          height: 630,
+          alt: `${appConfig.member.name} @ StackUp Socials`,
+        },
+      ],
+    },
+  } as Metadata;
 };
 
 const Home: NextPage = async () => {
