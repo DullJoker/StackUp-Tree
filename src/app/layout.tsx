@@ -1,14 +1,14 @@
-import { type Metadata } from "next";
-import React from "react";
-import Footer from "~/components/footer";
-import Header from "~/components/header";
-import { appConfig } from "~/config/app";
-import "~/styles/tailwind.css";
+import { type Metadata } from "next"
+import React from "react"
+import Footer from "~/components/footer"
+import Header from "~/components/header"
+import { appConfig } from "~/config/app"
+import "~/styles/tailwind.css"
 
-export const revalidate = 86400;
+export const revalidate = 86400
 
 export const generateMetadata = async () => {
-  const metadataBase = new URL("https://stackup-socialtree.vercel.app");
+  const metadataBase = new URL("https://stackup-socialtree.vercel.app")
 
   return {
     title: {
@@ -32,8 +32,8 @@ export const generateMetadata = async () => {
         },
       ],
     },
-  } as Metadata;
-};
+  } as Metadata
+}
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -49,7 +49,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         </main>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

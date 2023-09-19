@@ -1,38 +1,20 @@
-import { type Metadata, type NextPage } from "next";
-import Image from "next/image";
-import { appConfig } from "~/config/app";
-import { LinkLister } from "~/contents/linksLister";
-import { getProfilePic } from "~/utils/remoteImage";
+import { type Metadata, type NextPage } from "next"
+import { appConfig } from "~/config/app"
+import { LinkLister } from "~/contents/linksLister"
+import { getProfilePic } from "~/utils/remoteImage"
 
-export const revalidate = 86400;
+import Image from "next/image"
+
+export const revalidate = 86400
 
 export const generateMetadata = async () => {
-  const metadataBase = new URL("https://stackup-socialtree.vercel.app");
-
   return {
     title: `${appConfig.member.name} @ StackUp Socials`,
-    description: `${appConfig.member.name}'s socials in a neat list!`,
-    icons: ["/favicon.ico"],
-    metadataBase,
-    openGraph: {
-      title: `${appConfig.member.name} @ StackUp Socials`,
-      description: `${appConfig.member.name}'s socials in a neat list!`,
-      type: "website",
-      locale: "en_US",
-      images: [
-        {
-          url: "/api/og",
-          width: 1200,
-          height: 630,
-          alt: `${appConfig.member.name} @ StackUp Socials`,
-        },
-      ],
-    },
-  } as Metadata;
-};
+  } as Metadata
+}
 
 const Home: NextPage = async () => {
-  const ProfilePicture = await getProfilePic();
+  const ProfilePicture = await getProfilePic()
 
   return (
     <>
@@ -58,7 +40,7 @@ const Home: NextPage = async () => {
         <LinkLister />
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
