@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware() {
+export function middleware(request: Request) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const cspHeader = `
     default-src 'self';
@@ -16,6 +16,7 @@ export function middleware() {
     upgrade-insecure-requests;`;
 
   const requestHeaders = new Headers();
+  requestHeaders.set("x-requested-url", request.url);
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set(
     "Content-Security-Policy",

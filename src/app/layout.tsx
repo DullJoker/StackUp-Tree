@@ -8,8 +8,9 @@ import "~/styles/tailwind.css";
 
 export const generateMetadata = async () => {
   const headersList = headers();
-  const domain = headersList.get("x-forwarded-host") || headersList.get("host");
-  const metadataBase = new URL(domain || "https://acme.com");
+  const requestedURL =
+    headersList.get("x-requested-url") || "https://stackup.socials.vercel.app";
+  const metadataBase = new URL(requestedURL);
 
   return {
     title: {
