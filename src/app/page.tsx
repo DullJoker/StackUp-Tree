@@ -1,5 +1,4 @@
 import { type Metadata, type NextPage } from "next";
-import { headers } from "next/headers";
 import Image from "next/image";
 import { appConfig } from "~/config/app";
 import { LinkLister } from "~/contents/linksLister";
@@ -8,10 +7,7 @@ import { getProfilePic } from "~/utils/remoteImage";
 export const revalidate = 86400;
 
 export const generateMetadata = async () => {
-  const headersList = headers();
-  const requestedURL =
-    headersList.get("x-requested-url") || "https://stackup.socials.vercel.app";
-  const metadataBase = new URL(requestedURL);
+  const metadataBase = new URL("https://stackup-socialtree.vercel.app");
 
   return {
     title: `${appConfig.member.name} @ StackUp Socials`,

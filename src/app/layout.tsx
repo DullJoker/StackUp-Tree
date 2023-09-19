@@ -1,5 +1,4 @@
 import { type Metadata } from "next";
-import { headers } from "next/headers";
 import React from "react";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
@@ -9,10 +8,7 @@ import "~/styles/tailwind.css";
 export const revalidate = 86400;
 
 export const generateMetadata = async () => {
-  const headersList = headers();
-  const requestedURL =
-    headersList.get("x-requested-url") || "https://stackup.socials.vercel.app";
-  const metadataBase = new URL(requestedURL);
+  const metadataBase = new URL("https://stackup-socialtree.vercel.app");
 
   return {
     title: {
