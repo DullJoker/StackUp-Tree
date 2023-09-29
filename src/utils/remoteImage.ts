@@ -1,15 +1,36 @@
 import { appConfig } from "~/config/app"
 import ProfilePicFallback from "~/images/StackUpLogo.webp"
 
-export const remoteImage = async (url: string) => {
-  const response = await fetch(url)
-  const blob = await response.blob()
-  const arrayBuffer = await blob.arrayBuffer()
-  const base64String = bufferToBase64(arrayBuffer)
-  return "data:" + blob.type + ";base64," + base64String
+import { headers } from "next/headers"
+
+export const getRemoteFetchUrl = (imgRemoteUrl: string) => {
+  if (typeof window === "undefined") {
+    const headersList = headers()
+    const host = headersList.get("Host")
+    return `http://${host}/api/image-fetch?url=${encodeURIComponent(
+      imgRemoteUrl
+    )}`
+  } else {
+    return "/api/image-fetch?url=" + encodeURIComponent(imgRemoteUrl)
+  }
 }
 
-function bufferToBase64(buffer: ArrayBuffer): string {
+export const remoteImage = async (url: string) => {
+  const { arrayBuffer, imageFormat } = await remoteImageArrayBuffer(url)
+  const base64String = bufferToBase64(arrayBuffer)
+  return "data:" + imageFormat + ";base64," + base64String
+}
+
+export const remoteImageArrayBuffer = async (url: string) => {
+  const response = await fetch(url)
+  const blob = await response.blob()
+  return await {
+    arrayBuffer: await blob.arrayBuffer(),
+    imageFormat: blob.type,
+  }
+}
+
+export const bufferToBase64 = (buffer: ArrayBuffer): string => {
   let binary = ""
   const bytes = new Uint8Array(buffer)
   for (let i = 0; i < bytes.byteLength; i++) {
@@ -19,16 +40,19 @@ function bufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary)
 }
 
-export const getProfilePic = async () => {
+export const getRemoteImageObject = async (
+  remoteUrl: string,
+  size?: number
+) => {
   try {
     const remotePicture = await remoteImage(
-      appConfig.member.profilePicture.src.toString()
+      remoteUrl || appConfig.member.profilePicture.src.href
     )
 
     return {
       src: remotePicture,
-      width: 100,
-      height: 100,
+      width: size || 100,
+      height: size || 100,
     }
   } catch (error) {
     console.error(error)

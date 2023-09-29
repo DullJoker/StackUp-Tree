@@ -8,13 +8,13 @@
 ## Install
 
 ```sh
-bun install
+pnpm install
 ```
 
 ## Usage
 
 ```sh
-bun run dev
+pnpm run dev
 ```
 
 ## Author

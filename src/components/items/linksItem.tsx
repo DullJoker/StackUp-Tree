@@ -7,10 +7,12 @@ const LinksItem = ({
   Icon,
   title,
   href,
+  disabled,
 }: {
   Icon: IconType
   title: string
   href: string
+  disabled?: boolean
 }) => {
   return (
     <Link
@@ -18,6 +20,8 @@ const LinksItem = ({
       target="_blank"
       rel="noreferrer"
       className="relative my-auto flex w-full items-center px-2 py-2 text-lg"
+      aria-disabled={disabled}
+      onClick={disabled ? (e) => e.preventDefault() : undefined}
     >
       <span className="absolute text-4xl text-MainRed">
         <Icon />

@@ -1,11 +1,26 @@
-"use client";
+"use client"
 
-import { Div } from "@glitchtech-dev/react-motion";
-import LinksItem from "~/components/items/linksItem";
-import Links from "~/config/links";
+import { Div } from "@glitchtech-dev/react-motion"
+import { useEffect, useState } from "react"
+import LinksItem from "~/components/items/linksItem"
+import Links from "~/config/links"
 
-export const LinkLister = () => {
-  const linksFlattened = Links.flatMap((current) => current);
+const LinkLister = () => {
+  const [linksAreClickable, setLinksAreClickable] = useState(false)
+  const linksFlattened = Links.flatMap((current) => current)
+
+  useEffect(() => {
+    const totalDelay = 0.15 * linksFlattened.length
+
+    const timeout = setTimeout(() => {
+      setLinksAreClickable(true)
+    }, totalDelay * 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [linksFlattened])
+
   return (
     <div className="flex flex-col w-full gap-6 max-w-4xl mx-auto">
       {linksFlattened.map((current, idx) => {
@@ -29,12 +44,15 @@ export const LinkLister = () => {
                   Icon={current.icon}
                   title={current.title}
                   href={current.href}
+                  disabled={!linksAreClickable}
                 />
               </div>
             </div>
           </Div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
+
+export default LinkLister

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { appConfig } from "~/config/app"
-import { getProfilePic } from "~/utils/remoteImage"
+import { getRemoteImageObject } from "~/utils/remoteImage"
 
 import { ImageResponse } from "next/server"
 
@@ -9,7 +9,9 @@ import { ImageResponse } from "next/server"
 
 export const getOpenGraphImage = async () => {
   try {
-    const ProfilePicture = await getProfilePic()
+    const ProfilePicture = await getRemoteImageObject(
+      appConfig.member.profilePicture.src.href
+    )
     const handle = appConfig.member.handle
 
     return new ImageResponse(

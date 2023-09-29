@@ -1,7 +1,7 @@
-import { type Metadata, type NextPage } from "next"
+import { type Metadata } from "next"
 import { appConfig } from "~/config/app"
-import { LinkLister } from "~/contents/linksLister"
-import { getProfilePic } from "~/utils/remoteImage"
+import LinkLister from "~/contents/linksLister"
+import { getRemoteFetchUrl } from "~/utils/remoteImage"
 
 import Image from "next/image"
 
@@ -13,14 +13,17 @@ export const generateMetadata = async () => {
   } as Metadata
 }
 
-const Home: NextPage = async () => {
-  const ProfilePicture = await getProfilePic()
+const Home = async () => {
+  const remoteImage = new URL(
+    getRemoteFetchUrl(appConfig.member.profilePicture.src.href)
+  )
+  const imageUrl = remoteImage.pathname + remoteImage.search
 
   return (
     <>
       <section id="Details" className="flex w-full flex-col bg-MainRed py-10">
         <Image
-          src={ProfilePicture}
+          src={imageUrl}
           height={100}
           width={100}
           alt={`Profile Picture - ${appConfig.member.name}`}
