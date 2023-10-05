@@ -17,6 +17,7 @@ const Home = async () => {
   const remoteImage = new URL(
     getRemoteFetchUrl(appConfig.member.profilePicture.src.href)
   )
+
   const imageUrl = remoteImage.pathname + remoteImage.search
 
   return (

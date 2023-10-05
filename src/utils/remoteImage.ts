@@ -7,11 +7,16 @@ export const getRemoteFetchUrl = (imgRemoteUrl: string) => {
   if (typeof window === "undefined") {
     const headersList = headers()
     const host = headersList.get("Host")
-    return `http://${host}/api/image-fetch?url=${encodeURIComponent(
-      imgRemoteUrl
-    )}`
+    return `${
+      host?.includes("localhost") ? "http://" : "https://"
+    }${host}/api/image-fetch?url=${encodeURIComponent(imgRemoteUrl)}`
   } else {
-    return "/api/image-fetch?url=" + encodeURIComponent(imgRemoteUrl)
+    const host = window.location.host
+    return (
+      `${
+        host.includes("localhost") ? "http://" : "https://"
+      }${host}/api/image-fetch?url=` + encodeURIComponent(imgRemoteUrl)
+    )
   }
 }
 

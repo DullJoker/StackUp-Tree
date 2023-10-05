@@ -5,7 +5,10 @@ import { ImageResponse, NextResponse } from "next/server"
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unknown-property */
 
-export const getRemoteImage = async (req: Request) => {
+export const runtime = "edge"
+export const revalidate = 86400
+
+export const GET = async (req: Request) => {
   try {
     const searchParams = new URL(req.url).searchParams
 
