@@ -1,9 +1,10 @@
+/* eslint-disable react/no-unknown-property */
+
+/* eslint-disable @next/next/no-img-element */
 import { type Metadata } from "next"
 import { appConfig } from "~/config/app"
 import LinkLister from "~/contents/linksLister"
 import { getRemoteFetchUrl } from "~/utils/remoteImage"
-
-import Image from "next/image"
 
 export const revalidate = 86400
 
@@ -23,13 +24,12 @@ const Home = async () => {
   return (
     <>
       <section id="Details" className="flex w-full flex-col bg-MainRed py-10">
-        <Image
+        <img
           src={imageUrl}
           height={100}
           width={100}
           alt={`Profile Picture - ${appConfig.member.name}`}
           className="mx-auto h-28 w-28 rounded-full object-center object-contain bg-black antialiased"
-          priority
         />
         <h2 className="mx-auto mt-6 text-2xl font-extrabold text-white">
           {appConfig.member.handle}

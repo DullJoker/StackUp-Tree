@@ -15,7 +15,9 @@ export const getRemoteFetchUrl = (imgRemoteUrl: string) => {
     return (
       `${
         host.includes("localhost") ? "http://" : "https://"
-      }${host}/api/image-fetch?url=` + encodeURIComponent(imgRemoteUrl)
+      }${host}/api/image-fetch?url=` +
+      encodeURIComponent(imgRemoteUrl) +
+      ".png"
     )
   }
 }
